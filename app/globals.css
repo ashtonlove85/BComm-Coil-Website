@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-cream text-stone-900 font-body antialiased;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(255, 77, 77, 0.05), transparent 32%),
+    radial-gradient(circle at 90% 0%, rgba(201, 168, 76, 0.08), transparent 35%),
+    linear-gradient(180deg, #faf7f2 0%, #f5f1ea 100%);
+}
+
+.glass-card {
+  @apply border border-stone-200/80 bg-white/80 shadow-sm backdrop-blur;
+}
+
+.section-container {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.heading-display {
+  @apply font-display tracking-tight text-stone-900;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 77, 77, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 77, 77, 0.35);
+  }
+}
+
+.drift-row {
+  animation: marquee 20s linear infinite;
+}
+
+.drift-row:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 767px) {
+  body {
+  }
+}
