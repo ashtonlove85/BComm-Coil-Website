@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LocalPass | Premium Local Discovery</title>
+    <style>
+      :root {
+        --cream: #faf7f2;
+        --cream-deep: #f5f1ea;
+        --stone-900: #1f1b16;
+        --stone-700: #4f463e;
+        --stone-600: #675f58;
+        --stone-300: #d9d1c7;
+        --stone-200: #e7dfd5;
+        --coral: #ff4d4d;
+        --gold: #c9a84c;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--stone-900);
+        background-image:
+          radial-gradient(circle at 10% 10%, rgba(255, 77, 77, 0.05), transparent 32%),
+          radial-gradient(circle at 90% 0%, rgba(201, 168, 76, 0.08), transparent 35%),
+          linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+      }
+
+      .container {
+        width: min(1200px, 100% - 2rem);
+        margin-inline: auto;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(231, 223, 213, 0.9);
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(31, 27, 22, 0.04);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--stone-200);
+        background: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(6px);
+      }
+
+      .header-inner {
+        height: 72px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .header-logo {
+        height: 48px;
+        width: auto;
+      }
+
+      .header-nav {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        justify-self: center;
+      }
+
+      .header-spacer {
+        justify-self: end;
+        width: 48px;
+        height: 1px;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 0.62rem 1rem;
+        font-size: 0.92rem;
+        border: 1px solid var(--stone-300);
+        color: var(--stone-900);
+        background: #fff;
+      }
+
+      .btn-primary {
+        border-color: rgba(255, 77, 77, 0.6);
+        background: var(--coral);
+        color: #fff;
+      }
+
+      .btn-ghost:hover,
+      .btn:hover {
+        border-color: var(--coral);
+        color: var(--coral);
+      }
+
+      main {
+        padding-bottom: 5rem;
+      }
+
+      section {
+        margin-top: 3.25rem;
+      }
+
+      .hero {
+        margin-top: 2rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      @media (min-width: 980px) {
+        .hero {
+          grid-template-columns: 1.08fr 0.92fr;
+          align-items: center;
+        }
+      }
+
+      .eyebrow {
+        display: inline-block;
+        border-radius: 999px;
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        background: rgba(201, 168, 76, 0.1);
+        padding: 0.3rem 0.8rem;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--stone-700);
+      }
+
+      h1 {
+        margin: 1rem 0 0;
+        font-size: clamp(2.2rem, 6vw, 4rem);
+        line-height: 1.04;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(1.7rem, 4vw, 2.1rem);
+      }
+
+      .tagline {
+        margin-top: 0.7rem;
+        color: var(--coral);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .copy {
+        color: var(--stone-600);
+        margin-top: 1rem;
+        max-width: 58ch;
+        line-height: 1.6;
+      }
+
+      .value-copy {
+        margin-top: 1rem;
+        color: #2a241e;
+        font-weight: 500;
+      }
+
+      .hero-image {
+        height: 420px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--stone-200);
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1.5rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        gap: 1rem;
+      }
+
+      @media (min-width: 800px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: 1rem;
+      }
+
+      @media (min-width: 850px) {
+        .grid-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.72rem;
+        color: var(--coral);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        border: 1px solid var(--stone-300);
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.42rem 0.75rem;
+        font-size: 0.8rem;
+        color: var(--stone-700);
+        cursor: pointer;
+      }
+
+      .chip.active {
+        background: var(--coral);
+        border-color: var(--coral);
+        color: #fff;
+      }
+
+      .section-sub {
+        margin-top: 0.5rem;
+        color: var(--stone-600);
+        font-size: 0.95rem;
+      }
+
+      .city-grid {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      @media (min-width: 700px) {
+        .city-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1050px) {
+        .city-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      .city-card {
+        padding: 1rem;
+        text-decoration: none;
+        color: var(--stone-700);
+        display: block;
+      }
+
+      footer {
+        border-top: 1px solid var(--stone-200);
+        padding-top: 2.2rem;
+        margin-top: 3.5rem;
+        text-align: center;
+      }
+
+      .note {
+        margin-top: 0.8rem;
+        color: var(--stone-600);
+        font-size: 0.86rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner">
+        <a href="#home" aria-label="LocalPass home">
+          <img src="./Logo/LocalPassLogo1.png" alt="LocalPass logo" class="header-logo" />
+        </a>
+        <nav class="header-nav">
+          <a class="btn btn-primary" href="#explore-blog">Explore</a>
+          <a class="btn" href="#explore-blog">Blog</a>
+          <a class="btn" href="#featured">Featured</a>
+          <a class="btn" href="#categories">Categories</a>
+          <a class="btn" href="#experiences">Experiences</a>
+          <a class="btn" href="#restaurants">Restaurants</a>
+          <a class="btn" href="#cities">Cities</a>
+        </nav>
+        <div class="header-spacer" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <main id="home" class="container">
+      <section class="hero">
+        <div>
+          <span class="eyebrow">Real local city picks</span>
+          <h1>Find great food, coffee, culture, and hidden gems.</h1>
+          <p class="tagline">Local plans, made effortless</p>
+          <p class="value-copy">
+            LocalPass turns scattered recommendations into a clear
+            neighborhood-by-neighborhood plan, so you spend less time researching and more time
+            exploring.
+          </p>
+          <p class="copy">
+            LocalPass is your premium city guide with handpicked spots, beautiful imagery, and fast
+            category browsing built for real-world planning.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#explore-blog">Start Exploring</a>
+            <a class="btn" href="#explore-blog">Build Your Perfect City Day</a>
+            <a class="btn btn-ghost" href="#categories">Browse Food</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=1400&q=80"
+            alt="Hidden gem viewpoint in Spain at sunset"
+          />
+        </div>
+      </section>
+
+      <section id="featured">
+        <div id="featured-spots" class="grid-3"></div>
+      </section>
+
+      <section id="explore-blog">
+        <h2>Explore and Blog Highlights</h2>
+        <div class="grid-2" style="margin-top: 1rem">
+          <article class="glass-card card">
+            <p class="kicker">Explore requirement</p>
+            <h3>Explore Spain Like a Local</h3>
+            <p class="section-sub">
+              Jump into the map/list experience with filters, category chips, and city-by-city picks
+              for food, culture, nightlife, and hidden gems.
+            </p>
+            <p class="note">Static HTML mode: advanced map/filter actions are temporarily disabled.</p>
+          </article>
+          <article class="glass-card card">
+            <p class="kicker">Blog requirement</p>
+            <h3>Weekly LocalPass Blog Stories</h3>
+            <p class="section-sub">
+              Read curated guides, neighborhood breakdowns, and weekend itineraries built around real
+              local recommendations.
+            </p>
+            <p class="note">
+              Static HTML mode: post pages are represented as content blocks on this page for now.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="categories">
+        <h2>Browse by category</h2>
+        <div id="category-row" class="chip-row"></div>
+      </section>
+
+      <section id="experiences">
+        <h2>Madrid experiences</h2>
+        <p class="section-sub">
+          Build a full Madrid day with morning coffee, cultural stops, food markets, and late-night
+          music.
+        </p>
+        <div id="madrid-experiences" class="grid-3" style="margin-top: 1rem"></div>
+      </section>
+
+      <section id="restaurants">
+        <h2>Madrid restaurants and food stops</h2>
+        <div id="madrid-restaurants" class="grid-2" style="margin-top: 1rem"></div>
+      </section>
+
+      <section id="cities">
+        <h2>City pages</h2>
+        <div id="city-grid" class="city-grid"></div>
+      </section>
+
+      <footer>
+        <h2>Ready to explore like a local?</h2>
+        <p class="section-sub">Built for launch with complete category and city flows.</p>
+        <div class="actions" style="justify-content: center">
+          <a class="btn btn-primary" href="#explore-blog">Open Explore</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const categories = [
+        "Food",
+        "Coffee",
+        "Nightlife",
+        "Culture",
+        "Shopping",
+        "Views",
+        "Hidden Gems"
+      ];
+
+      const cityDirectory = [
+        { name: "Madrid", slug: "madrid" },
+        { name: "Barcelona", slug: "barcelona" },
+        { name: "Valencia", slug: "valencia" },
+        { name: "Seville", slug: "seville" },
+        { name: "Bilbao", slug: "bilbao" },
+        { name: "Malaga", slug: "malaga" },
+        { name: "Granada", slug: "granada" },
+        { name: "San Sebastian", slug: "san-sebastian" }
+      ];
+
+      const mapSeedSpots = [
+        {
+          id: "spot-mad-1",
+          name: "Casa Verbena",
+          neighborhood: "Malasana",
+          category: "Food",
+          city: "Madrid",
+          description: "Bustling tavern for modern tapas and vermouth with locals.",
+          tags: ["Tapas", "Late Night"]
+        },
+        {
+          id: "spot-mad-2",
+          name: "Cafe Gran Via",
+          neighborhood: "Chueca",
+          category: "Coffee",
+          city: "Madrid",
+          description: "Bright all-day cafe known for specialty roasts and terrace seats.",
+          tags: ["Specialty", "Terrace"]
+        },
+        {
+          id: "spot-bcn-1",
+          name: "Sala Paralela",
+          neighborhood: "El Raval",
+          category: "Nightlife",
+          city: "Barcelona",
+          description: "Intimate cocktail den with analog sets and a late crowd.",
+          tags: ["Vinyl", "Cocktails"]
+        },
+        {
+          id: "spot-mad-4",
+          name: "Taberna Cava Baja 27",
+          neighborhood: "La Latina",
+          category: "Food",
+          city: "Madrid",
+          description: "Classic taberna serving rich stews, seasonal tapas, and old-school charm.",
+          tags: ["Traditional", "Cocido", "Locals Favorite"]
+        },
+        {
+          id: "spot-mad-5",
+          name: "Retiro Row Boats",
+          neighborhood: "Jeronimos",
+          category: "Culture",
+          city: "Madrid",
+          description: "Slow afternoon boat rides and people-watching in Madrid's most loved park.",
+          tags: ["Park Day", "Iconic", "Relaxed"]
+        },
+        {
+          id: "spot-mad-6",
+          name: "Casa de Campo Mirador",
+          neighborhood: "Casa de Campo",
+          category: "Views",
+          city: "Madrid",
+          description: "Wide skyline views with the palace in frame, especially good at golden hour.",
+          tags: ["Sunset", "Cable Car", "Panoramic"]
+        },
+        {
+          id: "spot-mad-8",
+          name: "Mercado de San Miguel Counter Crawl",
+          neighborhood: "Centro",
+          category: "Food",
+          city: "Madrid",
+          description: "Build your own tasting route across jamon, pintxos, and sweet stops.",
+          tags: ["Market", "Tapas", "Quick Bites"]
+        },
+        {
+          id: "spot-mad-9",
+          name: "Sala Sol Sessions",
+          neighborhood: "Sol",
+          category: "Nightlife",
+          city: "Madrid",
+          description: "Legendary venue for indie and electronic shows with a local-heavy crowd.",
+          tags: ["Live Music", "Late Set", "Crowd Energy"]
+        }
+      ];
+
+      let activeCategory = "All";
+
+      function renderFeaturedSpots() {
+        const wrap = document.getElementById("featured-spots");
+        wrap.innerHTML = "";
+        const filtered =
+          activeCategory === "All"
+            ? mapSeedSpots
+            : mapSeedSpots.filter((spot) => spot.category === activeCategory);
+        filtered.slice(0, 3).forEach((spot) => {
+          const card = document.createElement("article");
+          card.className = "glass-card card";
+          card.innerHTML = `
+            <p class="kicker">${spot.category}</p>
+            <h3>${spot.name}</h3>
+            <p class="section-sub">${spot.description}</p>
+            <p class="note">Static preview only</p>
+          `;
+          wrap.appendChild(card);
+        });
+      }
+
+      function renderCategories() {
+        const row = document.getElementById("category-row");
+        row.innerHTML = "";
+
+        const allChip = document.createElement("button");
+        allChip.type = "button";
+        allChip.className = `chip ${activeCategory === "All" ? "active" : ""}`;
+        allChip.textContent = "All";
+        allChip.onclick = () => {
+          activeCategory = "All";
+          renderAll();
+        };
+        row.appendChild(allChip);
+
+        categories.forEach((category) => {
+          const chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "chip";
+          if (activeCategory === category) chip.classList.add("active");
+          chip.textContent = category;
+          chip.onclick = () => {
+            activeCategory = category;
+            renderAll();
+          };
+          row.appendChild(chip);
+        });
+      }
+
+      function renderMadridSections() {
+        const expWrap = document.getElementById("madrid-experiences");
+        const foodWrap = document.getElementById("madrid-restaurants");
+        expWrap.innerHTML = "";
+        foodWrap.innerHTML = "";
+
+        const cityFiltered = mapSeedSpots.filter((spot) => spot.city === "Madrid");
+        const madrid =
+          activeCategory === "All"
+            ? cityFiltered
+            : cityFiltered.filter((spot) => spot.category === activeCategory);
+        const madridPicks = madrid.slice(0, 6);
+        const madridFood = madrid.filter((spot) => spot.category === "Food").slice(0, 4);
+
+        madridPicks.forEach((spot) => {
+          const card = document.createElement("article");
+          card.className = "glass-card card";
+          card.innerHTML = `
+            <p class="kicker">${spot.category}</p>
+            <h3>${spot.name}</h3>
+            <p class="section-sub">${spot.neighborhood}</p>
+            <p class="section-sub">${spot.description}</p>
+          `;
+          expWrap.appendChild(card);
+        });
+
+        madridFood.forEach((spot) => {
+          const tags = (spot.tags || []).map((tag) => `<span class="chip">${tag}</span>`).join("");
+          const card = document.createElement("article");
+          card.className = "glass-card card";
+          card.innerHTML = `
+            <h3>${spot.name}</h3>
+            <p class="section-sub">${spot.neighborhood}, Madrid</p>
+            <p class="section-sub">${spot.description}</p>
+            <div class="chip-row">${tags}</div>
+          `;
+          foodWrap.appendChild(card);
+        });
+      }
+
+      function renderCities() {
+        const grid = document.getElementById("city-grid");
+        grid.innerHTML = "";
+        cityDirectory.forEach((city) => {
+          const link = document.createElement("a");
+          link.href = "#";
+          link.className = "glass-card city-card";
+          link.innerHTML = `
+            <p style="font-size:1.25rem;font-weight:600;margin:0">${city.name}</p>
+            <p class="note" style="margin-top:0.35rem">Open guide (static preview)</p>
+          `;
+          grid.appendChild(link);
+        });
+      }
+
+      function renderAll() {
+        renderFeaturedSpots();
+        renderCategories();
+        renderMadridSections();
+        renderCities();
+      }
+
+      renderAll();
+    </script>
+  </body>
+</html>

@@ -22,7 +22,7 @@ export default function BlogPage() {
           </p>
           <p className="mt-3 text-stone-700">
             We wanted a cleaner way to discover places with neighborhood personality. That means
-            fewer "must-see" checklists and more local bars, courtyards, bookshops, markets, and
+            fewer &lsquo;must-see&rsquo; checklists and more local bars, courtyards, bookshops, markets, and
             sunset viewpoints that people actually return to.
           </p>
           <p className="mt-3 text-stone-700">
