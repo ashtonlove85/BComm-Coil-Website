@@ -12,39 +12,43 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <section className="grid gap-5">
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Featured story</p>
-          <h2 className="mt-2 font-display text-3xl">Why We Built LocalPass</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-coral">Travel reality</p>
+          <h2 className="mt-2 font-display text-3xl">Skip the Line. Find the Real Spain.</h2>
           <p className="mt-3 text-stone-700">
-            LocalPass started from one simple frustration: spending hours scrolling generic lists,
-            then ending up in crowded tourist spots that felt disconnected from the city itself.
+            You can spend months planning a Spain trip and still end up in long lines, crowded buses,
+            and restaurants packed with tourists. The highlight reels are beautiful, but they often
+            leave out the waiting, traffic, and missed moments.
           </p>
           <p className="mt-3 text-stone-700">
-            We wanted a cleaner way to discover places with neighborhood personality. That means
-            fewer &lsquo;must-see&rsquo; checklists and more local bars, courtyards, bookshops, markets, and
-            sunset viewpoints that people actually return to.
+            The best version of a city is often one block away from the busiest attraction. Locals
+            know where to go for personality, pace, and better experiences, but most travelers do
+            not have those connections.
           </p>
           <p className="mt-3 text-stone-700">
-            Every guide is designed for real movement through a city: coffee first, food nearby,
-            culture in walking distance, and nightlife that makes sense at the end of the route.
+            LocalPass helps close that gap by connecting travelers to verified local recommendations,
+            so you can skip tourist traps and discover authentic restaurants and attractions with far
+            less guesswork.
           </p>
         </article>
 
         <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Food guide</p>
-          <h2 className="mt-2 font-display text-3xl">Favorite Food Spots by City</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-coral">Hidden gems</p>
+          <h2 className="mt-2 font-display text-3xl">The Spain Google Will Never Show You</h2>
           <p className="mt-3 text-stone-700">
-            <strong>Madrid:</strong> Start with market bites near Centro, then move toward La Latina
-            for slower tavern-style dinners.
+            Many travelers hit must-see landmarks and nearby restaurants, then leave feeling like the
+            trip was generic. The most memorable places are usually smaller local businesses tucked
+            inside real neighborhoods, not the highest-traffic tourist zones.
           </p>
-          <p className="mt-2 text-stone-700">
-            <strong>Barcelona:</strong> Mix one chef-led bistro stop with neighborhood vermouth bars
-            for a better balance of modern and classic.
+          <p className="mt-3 text-stone-700">
+            A better approach is intent-based search: look for local businesses, hidden gems, and
+            neighborhood-specific recommendations. Areas like Lavapies or Chamberi often reveal more
+            character, stronger community reviews, and experiences worth repeating.
           </p>
-          <p className="mt-2 text-stone-700">
-            <strong>Valencia & Seville:</strong> Focus on local specialties and ask staff for
-            seasonal dishes; the best meals are often off-menu.
+          <p className="mt-3 text-stone-700">
+            If you want to skip hours of searching, LocalPass helps you go straight to verified local
+            recommendations so each trip feels unique instead of average.
           </p>
         </article>
 
