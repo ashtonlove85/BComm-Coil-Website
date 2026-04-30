@@ -17,7 +17,7 @@ export async function POST(
   if (!userId) {
     return NextResponse.json({ error: "Missing user id" }, { status: 401 });
   }
-  if (!hasDatabaseUrl) {
+  if (!hasDatabaseUrl || !prisma) {
     return NextResponse.json({ ok: true, saved: [spotId] });
   }
 

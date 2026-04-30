@@ -10,7 +10,7 @@ export default async function SpotDetailPage({
 }: {
   params: { id: string };
 }) {
-  const spot = hasDatabaseUrl
+  const spot = hasDatabaseUrl && prisma
     ? await prisma.spot
         .findUnique({
           where: { id: params.id },

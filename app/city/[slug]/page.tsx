@@ -10,12 +10,12 @@ export default async function CityPage({
 }: {
   params: { slug: string };
 }) {
-  const city = hasDatabaseUrl
+  const city = hasDatabaseUrl && prisma
     ? await prisma.city.findUnique({ where: { slug: params.slug } }).catch(() => null)
     : null;
   const fallbackCity = cityDirectory.find((entry) => entry.slug === params.slug);
   const cityName = city?.name ?? fallbackCity?.name ?? "Madrid";
-  const spots = hasDatabaseUrl
+  const spots = hasDatabaseUrl && prisma
     ? await prisma.spot
         .findMany({ where: { city: cityName }, take: 6 })
         .catch(() => [])

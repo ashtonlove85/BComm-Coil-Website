@@ -2,8 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { hasDatabaseUrl } from "@/lib/env";
 
 export default async function ProfilePage() {
-  const user = hasDatabaseUrl ? await prisma.user.findFirst().catch(() => null) : null;
-  const recommendations = hasDatabaseUrl
+  const user = hasDatabaseUrl && prisma ? await prisma.user.findFirst().catch(() => null) : null;
+  const recommendations = hasDatabaseUrl && prisma
     ? await prisma.spot.findMany({ take: 5 }).catch(() => [])
     : [];
 

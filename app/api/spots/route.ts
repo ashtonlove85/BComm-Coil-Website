@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams.get("q")?.toLowerCase() ?? "";
   const category = request.nextUrl.searchParams.get("category");
 
-  if (!hasDatabaseUrl) {
+  if (!hasDatabaseUrl || !prisma) {
     const filtered = mapSeedSpots.filter((spot) => {
       const matchesCategory = category ? spot.category === category : true;
       const matchesQuery =

@@ -4,7 +4,7 @@ import { hasDatabaseUrl } from "@/lib/env";
 import { cityNames } from "@/lib/mock-data";
 
 export async function GET() {
-  if (!hasDatabaseUrl) {
+  if (!hasDatabaseUrl || !prisma) {
     return NextResponse.json(
       cityNames.map((name) => ({
         id: name.toLowerCase().replace(/\s/g, "-"),
