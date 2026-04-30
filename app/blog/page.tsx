@@ -53,34 +53,10 @@ export default function BlogPage() {
         </article>
 
         <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Itinerary</p>
-          <h2 className="mt-2 font-display text-3xl">How to Plan a Perfect Weekend in Madrid</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-coral">Coming soon</p>
+          <h2 className="mt-2 font-display text-3xl">Your Next Story Here</h2>
           <p className="mt-3 text-stone-700">
-            <strong>Friday night:</strong> light tapas and a live music venue around Sol.
-            <br />
-            <strong>Saturday:</strong> specialty coffee in Chueca, Retiro culture stop, then sunset
-            viewpoints before dinner in La Latina.
-            <br />
-            <strong>Sunday:</strong> market browsing, neighborhood walk in Huertas, and a relaxed
-            final lunch near Chamberi.
-          </p>
-        </article>
-
-        <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Neighborhood focus</p>
-          <h2 className="mt-2 font-display text-3xl">Lavapies for Creative Energy</h2>
-          <p className="mt-3 text-stone-700">
-            Lavapies is where gallery pop-ups, globally inspired food, and late-night social bars
-            all live within a short walking radius. Plan to wander rather than over-schedule.
-          </p>
-        </article>
-
-        <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Coffee edit</p>
-          <h2 className="mt-2 font-display text-3xl">Best Morning Coffee Loops</h2>
-          <p className="mt-3 text-stone-700">
-            Build your mornings around two nearby cafes max, then pair each one with a bookstore,
-            market, or plaza stop. This keeps the day local, flexible, and less rushed.
+            Send the next blog post and this card will be replaced with your new title and content.
           </p>
         </article>
       </section>
