@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logoImage from "@/Logo/LocalPassLogo1.png";
+import logoImage from "@/Logo/logo1.png";
 
 export function SiteHeader() {
   return (
