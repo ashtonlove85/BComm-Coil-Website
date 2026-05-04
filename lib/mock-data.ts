@@ -125,7 +125,7 @@ export const mapSeedSpots: SpotRecord[] = [
     lng: 2.1705,
     city: "Barcelona",
     image:
-      "https://images.unsplash.com/photo-1571266028243-d220c9f5f3f5?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80",
     description: "Intimate cocktail den with analog sets and a late crowd."
   },
   {
