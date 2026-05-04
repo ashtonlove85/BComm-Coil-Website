@@ -4,27 +4,67 @@ const prisma = new PrismaClient();
 
 const cityConfigs = [
   {
-    name: "Austin",
-    country: "USA",
-    slug: "austin",
+    name: "Madrid",
+    country: "Spain",
+    slug: "madrid",
     coverPhoto:
-      "https://images.unsplash.com/photo-1531218150217-54595bc2b934?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1400&q=80",
     featured: true
   },
   {
-    name: "New York City",
-    country: "USA",
-    slug: "nyc",
+    name: "Barcelona",
+    country: "Spain",
+    slug: "barcelona",
     coverPhoto:
-      "https://images.unsplash.com/photo-1448317846460-907988886b33?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1400&q=80",
     featured: true
   },
   {
-    name: "Tokyo",
-    country: "Japan",
-    slug: "tokyo",
+    name: "Valencia",
+    country: "Spain",
+    slug: "valencia",
     coverPhoto:
-      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1400&q=80",
+    featured: true
+  },
+  {
+    name: "Seville",
+    country: "Spain",
+    slug: "seville",
+    coverPhoto:
+      "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1400&q=80",
+    featured: false
+  },
+  {
+    name: "Bilbao",
+    country: "Spain",
+    slug: "bilbao",
+    coverPhoto:
+      "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1400&q=80",
+    featured: false
+  },
+  {
+    name: "Malaga",
+    country: "Spain",
+    slug: "malaga",
+    coverPhoto:
+      "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1400&q=80",
+    featured: false
+  },
+  {
+    name: "Granada",
+    country: "Spain",
+    slug: "granada",
+    coverPhoto:
+      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1400&q=80",
+    featured: false
+  },
+  {
+    name: "San Sebastian",
+    country: "Spain",
+    slug: "san-sebastian",
+    coverPhoto:
+      "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1400&q=80",
     featured: true
   }
 ];

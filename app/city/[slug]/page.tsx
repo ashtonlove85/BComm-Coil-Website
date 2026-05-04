@@ -14,7 +14,7 @@ export default async function CityPage({
     ? await prisma.city.findUnique({ where: { slug: params.slug } }).catch(() => null)
     : null;
   const fallbackCity = cityDirectory.find((entry) => entry.slug === params.slug);
-  const cityName = city?.name ?? fallbackCity?.name ?? "Madrid";
+  const cityName = fallbackCity?.name ?? city?.name ?? "Madrid";
   const spots = hasDatabaseUrl && prisma
     ? await prisma.spot
         .findMany({ where: { city: cityName }, take: 6 })
