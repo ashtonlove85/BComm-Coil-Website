@@ -63,9 +63,9 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-4">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid justify-items-center gap-4 md:grid-cols-3">
           {featuredSpots.map((spot) => (
-            <article key={spot.id} className="glass-card overflow-hidden rounded-2xl">
+            <article key={spot.id} className="glass-card w-full max-w-md overflow-hidden rounded-2xl">
               <div className="relative aspect-[4/3] w-full">
                 <Image
                   src={spot.image}
@@ -95,9 +95,9 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-14">
-        <h2 className="font-display text-3xl">Explore and Blog Highlights</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
-          <article className="glass-card rounded-2xl p-6">
+        <h2 className="text-center font-display text-3xl">Explore and Blog Highlights</h2>
+        <div className="mt-5 grid justify-items-center gap-4 md:grid-cols-2">
+          <article className="glass-card w-full max-w-2xl rounded-2xl p-6 text-center">
             <p className="text-xs uppercase tracking-[0.2em] text-coral">Explore requirement</p>
             <h3 className="mt-2 font-display text-3xl text-stone-900">Explore Spain Like a Local</h3>
             <p className="mt-3 text-stone-600">
@@ -108,7 +108,7 @@ export function LandingPage() {
               Open Explore
             </Link>
           </article>
-          <article className="glass-card rounded-2xl p-6">
+          <article className="glass-card w-full max-w-2xl rounded-2xl p-6 text-center">
             <p className="text-xs uppercase tracking-[0.2em] text-coral">Blog requirement</p>
             <h3 className="mt-2 font-display text-3xl text-stone-900">
               Weekly LocalPass Blog Stories
@@ -125,8 +125,8 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-14">
-        <h2 className="font-display text-3xl">Browse by category</h2>
-        <div className="mt-5 flex flex-wrap gap-3">
+        <h2 className="text-center font-display text-3xl">Browse by category</h2>
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
           {categories.map((category) => (
             <Link
               key={category}
@@ -140,14 +140,14 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-14">
-        <h2 className="font-display text-3xl">Madrid experiences</h2>
-        <p className="mt-2 max-w-2xl text-sm text-stone-600">
+        <h2 className="text-center font-display text-3xl">Madrid experiences</h2>
+        <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-stone-600">
           Build a full Madrid day with morning coffee, cultural stops, food markets, and late-night
           music.
         </p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid justify-items-center gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {madridPicks.map((spot) => (
-            <article key={spot.id} className="glass-card rounded-xl p-4">
+            <article key={spot.id} className="glass-card w-full max-w-md rounded-xl p-4 text-center">
               <p className="text-xs uppercase tracking-[0.12em] text-coral">{spot.category}</p>
               <h3 className="mt-2 font-display text-xl">{spot.name}</h3>
               <p className="mt-1 text-sm text-stone-500">{spot.neighborhood}</p>
@@ -158,14 +158,14 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-14">
-        <h2 className="font-display text-3xl">Madrid restaurants and food stops</h2>
-        <div className="mt-5 grid gap-3 md:grid-cols-2">
+        <h2 className="text-center font-display text-3xl">Madrid restaurants and food stops</h2>
+        <div className="mt-5 grid justify-items-center gap-3 md:grid-cols-2">
           {madridRestaurants.map((spot) => (
-            <article key={spot.id} className="glass-card rounded-xl p-4">
+            <article key={spot.id} className="glass-card w-full max-w-2xl rounded-xl p-4 text-center">
               <h3 className="font-display text-2xl">{spot.name}</h3>
               <p className="mt-1 text-sm text-stone-500">{spot.neighborhood}, Madrid</p>
               <p className="mt-3 text-sm text-stone-600">{spot.description}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap justify-center gap-2">
                 {spot.tags.map((tag) => (
                   <span
                     key={tag}
@@ -181,18 +181,18 @@ export function LandingPage() {
       </section>
 
       <section className="section-container mt-14">
-        <h2 className="font-display text-3xl">City pages</h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="text-center font-display text-3xl">City pages</h2>
+        <div className="mt-5 grid justify-items-center gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {cityDirectory.map((city) => (
             <Link
               key={city.slug}
               href={`/city/${city.slug}`}
-              className="glass-card overflow-hidden rounded-xl text-stone-700 transition hover:border-coral"
+              className="glass-card w-full max-w-md overflow-hidden rounded-xl text-stone-700 transition hover:border-coral"
             >
               <div className="relative h-32 w-full">
                 <Image src={city.coverPhoto} alt={`${city.name} cover`} fill className="object-cover" />
               </div>
-              <div className="p-4">
+              <div className="p-4 text-center">
                 <p className="font-display text-xl">{city.name}</p>
                 <p className="mt-1 text-sm text-stone-500">Open guide</p>
               </div>
