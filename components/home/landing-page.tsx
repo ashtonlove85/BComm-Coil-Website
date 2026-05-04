@@ -25,7 +25,7 @@ export function LandingPage() {
           <span className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1 text-xs uppercase tracking-[0.2em] text-stone-700">
             Real local city picks
           </span>
-          <h1 className="mt-5 max-w-3xl bg-gradient-to-br from-charcoal via-stone-800 to-coral bg-clip-text font-display text-5xl font-semibold leading-[1.08] tracking-tight text-transparent sm:text-6xl lg:text-7xl lg:leading-[1.05]">
+          <h1 className="mt-5 max-w-3xl pb-2 bg-gradient-to-br from-charcoal via-stone-800 to-coral bg-clip-text font-display text-5xl font-semibold leading-[1.1] tracking-tight text-transparent sm:text-6xl lg:text-7xl lg:leading-[1.08]">
             Find great food, coffee, culture, and hidden gems.
           </h1>
           <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-coral">
