@@ -36,7 +36,7 @@ export default async function CityPage({
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-x-6 bottom-6">
-          <h1 className="heading-display text-6xl text-cream drop-shadow-md">{cityName}</h1>
+          <h1 className="font-display text-6xl tracking-tight text-cream drop-shadow-md">{cityName}</h1>
         </div>
       </section>
 
