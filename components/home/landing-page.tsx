@@ -28,7 +28,7 @@ export function LandingPage() {
           <h1 className="mt-5 max-w-3xl bg-gradient-to-br from-charcoal via-stone-800 to-coral bg-clip-text font-display text-5xl font-semibold leading-[1.08] tracking-tight text-transparent sm:text-6xl lg:text-7xl lg:leading-[1.05]">
             Find great food, coffee, culture, and hidden gems.
           </h1>
-          <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-coral">
+          <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-coral">
             Local plans, made effortless
           </p>
           <p className="mt-4 max-w-2xl text-base font-medium text-stone-800">
