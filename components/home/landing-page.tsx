@@ -6,11 +6,17 @@ import { Button } from "@/components/ui/button";
 import { categories, cityDirectory, mapSeedSpots } from "@/lib/mock-data";
 import { toCategorySlug } from "@/lib/category-utils";
 
+const featuredLandingSpotIds = ["spot-mad-1", "spot-mad-2", "spot-bcn-1"] as const;
+
 export function LandingPage() {
   const madridPicks = mapSeedSpots.filter((spot) => spot.city === "Madrid").slice(0, 6);
   const madridRestaurants = mapSeedSpots
     .filter((spot) => spot.city === "Madrid" && spot.category === "Food")
     .slice(0, 4);
+
+  const featuredSpots = featuredLandingSpotIds
+    .map((id) => mapSeedSpots.find((spot) => spot.id === id))
+    .filter((spot): spot is NonNullable<typeof spot> => Boolean(spot));
 
   return (
     <main className="pb-24">
@@ -19,7 +25,7 @@ export function LandingPage() {
           <span className="inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1 text-xs uppercase tracking-[0.2em] text-stone-700">
             Real local city picks
           </span>
-          <h1 className="mt-5 font-display text-5xl leading-tight text-stone-900 sm:text-6xl">
+          <h1 className="mt-5 max-w-3xl bg-gradient-to-br from-charcoal via-stone-800 to-coral bg-clip-text font-display text-5xl font-semibold leading-[1.08] tracking-tight text-transparent sm:text-6xl lg:text-7xl lg:leading-[1.05]">
             Find great food, coffee, culture, and hidden gems.
           </h1>
           <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-coral">
@@ -58,14 +64,31 @@ export function LandingPage() {
 
       <section className="section-container mt-4">
         <div className="grid gap-4 md:grid-cols-3">
-          {mapSeedSpots.slice(0, 3).map((spot) => (
-            <article key={spot.id} className="glass-card rounded-2xl p-4">
-              <p className="text-xs uppercase tracking-[0.15em] text-coral">{spot.category}</p>
-              <h3 className="mt-2 font-display text-2xl">{spot.name}</h3>
-              <p className="mt-2 text-sm text-stone-600">{spot.description}</p>
-              <Link href={`/spot/${spot.id}`} className="mt-4 inline-block text-sm text-coral">
-                View details
-              </Link>
+          {featuredSpots.map((spot) => (
+            <article key={spot.id} className="glass-card overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src={spot.image}
+                  alt={spot.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                <p className="absolute bottom-3 left-3 text-xs font-semibold uppercase tracking-[0.15em] text-white/95">
+                  {spot.category}
+                </p>
+              </div>
+              <div className="p-4">
+                <h3 className="font-display text-2xl text-stone-900">{spot.name}</h3>
+                <p className="mt-1 text-sm text-stone-500">
+                  {spot.neighborhood}, {spot.city}
+                </p>
+                <p className="mt-2 text-sm text-stone-600">{spot.description}</p>
+                <Link href={`/spot/${spot.id}`} className="mt-4 inline-block text-sm font-medium text-coral">
+                  View details
+                </Link>
+              </div>
             </article>
           ))}
         </div>
