@@ -27,6 +27,7 @@ export default async function CityPage({
         <Image
           src={
             city?.coverPhoto ??
+            fallbackCity?.coverPhoto ??
             "https://images.unsplash.com/photo-1531218150217-54595bc2b934?auto=format&fit=crop&w=1600&q=80"
           }
           alt={cityName}

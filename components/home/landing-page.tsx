@@ -187,10 +187,15 @@ export function LandingPage() {
             <Link
               key={city.slug}
               href={`/city/${city.slug}`}
-              className="glass-card rounded-xl p-4 text-stone-700 transition hover:border-coral"
+              className="glass-card overflow-hidden rounded-xl text-stone-700 transition hover:border-coral"
             >
-              <p className="font-display text-xl">{city.name}</p>
-              <p className="mt-1 text-sm text-stone-500">Open guide</p>
+              <div className="relative h-32 w-full">
+                <Image src={city.coverPhoto} alt={`${city.name} cover`} fill className="object-cover" />
+              </div>
+              <div className="p-4">
+                <p className="font-display text-xl">{city.name}</p>
+                <p className="mt-1 text-sm text-stone-500">Open guide</p>
+              </div>
             </Link>
           ))}
         </div>

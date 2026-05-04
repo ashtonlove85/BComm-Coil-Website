@@ -364,7 +364,27 @@ export const mapSeedSpots: SpotRecord[] = [
   }
 ];
 
+const cityCoverPhotos: Record<string, string> = {
+  Madrid:
+    "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80",
+  Barcelona:
+    "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1600&q=80",
+  Valencia:
+    "https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1600&q=80",
+  Seville:
+    "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1600&q=80",
+  Bilbao:
+    "https://images.unsplash.com/photo-1577433670267-08bbd4be890f?auto=format&fit=crop&w=1600&q=80",
+  Malaga:
+    "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1600&q=80",
+  Granada:
+    "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80",
+  "San Sebastian":
+    "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1600&q=80"
+};
+
 export const cityDirectory = cityNames.map((name) => ({
   name,
-  slug: name.toLowerCase().replace(/\s+/g, "-")
+  slug: name.toLowerCase().replace(/\s+/g, "-"),
+  coverPhoto: cityCoverPhotos[name]
 }));
