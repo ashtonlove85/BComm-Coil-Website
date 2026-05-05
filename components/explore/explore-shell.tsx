@@ -143,12 +143,12 @@ export function ExploreShell({ initialSpots }: { initialSpots: Spot[] }) {
               className="glass-card group rounded-2xl p-3 hover:border-coral/50"
               onMouseEnter={() => setSelectedId(spot.id)}
             >
-              <div className="relative h-40 w-full overflow-hidden rounded-xl">
+              <div className="relative h-44 w-full overflow-hidden rounded-xl bg-stone-100">
                 <Image
                   src={spot.image}
                   alt={spot.name}
                   fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
+                  className="object-contain transition duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="mt-3">
