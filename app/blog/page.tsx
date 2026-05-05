@@ -95,7 +95,7 @@ export default function BlogPage() {
         </article>
 
         <article className="glass-card rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-coral">Coming soon</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-coral">A New Way to Travel</p>
           <h2 className="mt-2 font-display text-3xl">Why Everyone is Switching to this New Style of Travel</h2>
           <p className="mt-3 text-stone-700">
             A new style of travel is quietly replacing traditional trip planning and most people have not caught

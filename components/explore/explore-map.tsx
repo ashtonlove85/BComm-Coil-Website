@@ -24,7 +24,7 @@ const cityMapImages: Record<string, string> = {
   Seville:
     "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1400&q=80",
   Bilbao:
-    "https://images.unsplash.com/photo-1577433670267-08bbd4be890f?auto=format&fit=crop&w=1400&q=80",
+    "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1400&q=80",
   Malaga:
     "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1400&q=80",
   Granada:

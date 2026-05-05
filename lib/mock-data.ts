@@ -88,7 +88,7 @@ export type SpotRecord = {
   description: string;
 };
 
-export const mapSeedSpots: SpotRecord[] = [
+const baseMapSeedSpots: SpotRecord[] = [
   {
     id: "spot-mad-1",
     name: "Casa Verbena",
@@ -363,6 +363,176 @@ export const mapSeedSpots: SpotRecord[] = [
     description: "Legendary venue for indie and electronic shows with a local-heavy crowd."
   }
 ];
+
+const cityCenters: Record<string, { lat: number; lng: number }> = {
+  Madrid: { lat: 40.4168, lng: -3.7038 },
+  Barcelona: { lat: 41.3851, lng: 2.1734 },
+  Valencia: { lat: 39.4699, lng: -0.3763 },
+  Seville: { lat: 37.3891, lng: -5.9845 },
+  Bilbao: { lat: 43.263, lng: -2.935 },
+  Malaga: { lat: 36.7213, lng: -4.4214 },
+  Granada: { lat: 37.1773, lng: -3.5986 },
+  "San Sebastian": { lat: 43.3183, lng: -1.9812 }
+};
+
+const cityContext: Record<
+  string,
+  { neighborhoods: string[]; vibe: string; regionalFocus: string; anchors: string[] }
+> = {
+  Madrid: {
+    neighborhoods: ["La Latina", "Chamberi", "Salamanca", "Lavapies"],
+    vibe: "energetic city districts",
+    regionalFocus: "castizo flavors and modern neighborhood culture",
+    anchors: ["plazas", "market lanes", "rooftop terraces"]
+  },
+  Barcelona: {
+    neighborhoods: ["Gracia", "El Born", "Poblenou", "Sant Antoni"],
+    vibe: "design-forward blocks",
+    regionalFocus: "Catalan creativity and independent makers",
+    anchors: ["side streets", "atelier storefronts", "seafront corners"]
+  },
+  Valencia: {
+    neighborhoods: ["Ruzafa", "El Carmen", "Cabanyal", "Benimaclet"],
+    vibe: "sunny local neighborhoods",
+    regionalFocus: "Mediterranean produce and relaxed social spaces",
+    anchors: ["civic markets", "garden routes", "late-night plazas"]
+  },
+  Seville: {
+    neighborhoods: ["Triana", "Santa Cruz", "Alameda", "Nervion"],
+    vibe: "warm Andalusian quarters",
+    regionalFocus: "traditional Andalusian hospitality",
+    anchors: ["courtyards", "orange-tree lanes", "riverfront promenades"]
+  },
+  Bilbao: {
+    neighborhoods: ["Abando", "Casco Viejo", "Indautxu", "Deusto"],
+    vibe: "riverfront creative districts",
+    regionalFocus: "Basque culinary identity and contemporary culture",
+    anchors: ["ria walkways", "old-town passages", "gallery streets"]
+  },
+  Malaga: {
+    neighborhoods: ["Soho", "La Merced", "Pedregalejo", "El Palo"],
+    vibe: "coastal city pockets",
+    regionalFocus: "seafood traditions and modern cafe culture",
+    anchors: ["port avenues", "beachside lanes", "historic center streets"]
+  },
+  Granada: {
+    neighborhoods: ["Albaicin", "Realejo", "Centro", "Sacromonte"],
+    vibe: "hillside historic barrios",
+    regionalFocus: "Moorish heritage and artisan craft scenes",
+    anchors: ["view terraces", "historic alleys", "artisan studios"]
+  },
+  "San Sebastian": {
+    neighborhoods: ["Parte Vieja", "Gros", "Centro", "Antiguo"],
+    vibe: "coastal gastronomic neighborhoods",
+    regionalFocus: "pintxos culture and oceanfront lifestyle",
+    anchors: ["bay promenades", "food lanes", "surf-adjacent corners"]
+  }
+};
+
+const categoryMeta: Record<
+  SpotCategory,
+  { venueTitles: string[]; tags: string[]; image: string; descriptionTemplate: string }
+> = {
+  Food: {
+    venueTitles: ["Market Table", "Neighborhood Kitchen", "Local Plates House"],
+    tags: ["Chef-Led", "Regional Menu", "Locals Favorite"],
+    image:
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A polished dining stop in {neighborhood} focused on {regionalFocus}, built for travelers who want a local-first meal."
+  },
+  Coffee: {
+    venueTitles: ["Roasters Studio", "Morning Counter", "Slow Brew Atelier"],
+    tags: ["Specialty Beans", "All-Day Cafe", "Remote Friendly"],
+    image:
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A calm coffee address in {neighborhood} where baristas spotlight {regionalFocus} in a modern, work-friendly setting."
+  },
+  Nightlife: {
+    venueTitles: ["After Hours Room", "Night Sessions Club", "Late Social Lounge"],
+    tags: ["Cocktail Program", "DJ Nights", "Local Crowd"],
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "An elevated nightlife pick near {neighborhood}, combining curated music, confident drinks, and the pace of {vibe}."
+  },
+  Culture: {
+    venueTitles: ["Cultura House", "Arts Courtyard", "Barrio Culture Rooms"],
+    tags: ["Local Artists", "Performance Nights", "Community Events"],
+    image:
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A neighborhood culture venue in {neighborhood} presenting exhibitions and live programming rooted in {regionalFocus}."
+  },
+  Shopping: {
+    venueTitles: ["Design Market Hall", "Independent Goods House", "Makers Arcade"],
+    tags: ["Independent Brands", "Handmade Goods", "Small Business"],
+    image:
+      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A curated shopping stop by {neighborhood} where visitors discover independent labels, studio goods, and practical local design."
+  },
+  Views: {
+    venueTitles: ["Skyline Terrace", "Mirador Walk", "Panorama Point"],
+    tags: ["Sunset View", "Photo Spot", "Scenic Route"],
+    image:
+      "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A high-value viewpoint connected to {anchors}, delivering broad city perspectives without the heavy tourist flow."
+  },
+  "Hidden Gems": {
+    venueTitles: ["Side-Street Find", "Secret Neighborhood Corner", "Under-the-Radar Spot"],
+    tags: ["Quiet Pick", "Low Key", "Local Secret"],
+    image:
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=80",
+    descriptionTemplate:
+      "A lesser-known local recommendation around {neighborhood} that feels authentic, walkable, and intentionally away from peak crowds."
+  }
+};
+
+const toSlug = (value: string) => value.toLowerCase().replace(/\s+/g, "-");
+const toTitlePrefix = (city: string) => city.replace("San Sebastian", "Donostia");
+
+const generatedCoverageSpots: SpotRecord[] = cityNames.flatMap((city, cityIndex) =>
+  categories.flatMap((category, categoryIndex) => {
+    const hasCategoryInCity = baseMapSeedSpots.some(
+      (spot) => spot.city === city && spot.category === category
+    );
+
+    if (hasCategoryInCity) return [];
+
+    const center = cityCenters[city];
+    const meta = categoryMeta[category];
+    const context = cityContext[city];
+    const offset = (cityIndex + 1) * 0.001 + (categoryIndex + 1) * 0.0002;
+    const neighborhood = context.neighborhoods[categoryIndex % context.neighborhoods.length];
+    const venueTitle = meta.venueTitles[(cityIndex + categoryIndex) % meta.venueTitles.length];
+    const anchors = context.anchors.join(", ");
+    const description = meta.descriptionTemplate
+      .replace("{neighborhood}", neighborhood)
+      .replace("{regionalFocus}", context.regionalFocus)
+      .replace("{vibe}", context.vibe)
+      .replace("{anchors}", anchors);
+
+    return [
+      {
+        id: `spot-${toSlug(city)}-${toSlug(category)}-auto`,
+        name: `${toTitlePrefix(city)} ${venueTitle}`,
+        neighborhood,
+        category,
+        tags: meta.tags,
+        lat: center.lat + offset,
+        lng: center.lng - offset,
+        city,
+        image: meta.image,
+        description
+      }
+    ];
+  })
+);
+
+export const mapSeedSpots: SpotRecord[] = [...baseMapSeedSpots, ...generatedCoverageSpots];
 
 const cityCoverPhotos: Record<string, string> = {
   Madrid:
