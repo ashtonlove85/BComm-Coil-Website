@@ -133,7 +133,7 @@ export function ExploreShell({ initialSpots }: { initialSpots: Spot[] }) {
       </div>
 
       <section className="grid gap-4 lg:grid-cols-[420px_1fr]">
-        <div className="max-h-[75vh] space-y-3 overflow-y-auto pr-1 pb-6">
+        <div className="space-y-3 pr-1">
           {visibleSpots.map((spot, idx) => (
             <motion.article
               key={spot.id}

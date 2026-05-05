@@ -493,42 +493,49 @@ const categoryMeta: Record<
 
 const toSlug = (value: string) => value.toLowerCase().replace(/\s+/g, "-");
 const toTitlePrefix = (city: string) => city.replace("San Sebastian", "Donostia");
+const MIN_SPOTS_PER_CITY_CATEGORY = 2;
 
 const generatedCoverageSpots: SpotRecord[] = cityNames.flatMap((city, cityIndex) =>
   categories.flatMap((category, categoryIndex) => {
-    const hasCategoryInCity = baseMapSeedSpots.some(
+    const existingCount = baseMapSeedSpots.filter(
       (spot) => spot.city === city && spot.category === category
-    );
+    ).length;
+    const spotsToGenerate = Math.max(0, MIN_SPOTS_PER_CITY_CATEGORY - existingCount);
 
-    if (hasCategoryInCity) return [];
+    if (spotsToGenerate === 0) return [];
 
     const center = cityCenters[city];
     const meta = categoryMeta[category];
     const context = cityContext[city];
-    const offset = (cityIndex + 1) * 0.001 + (categoryIndex + 1) * 0.0002;
-    const neighborhood = context.neighborhoods[categoryIndex % context.neighborhoods.length];
-    const venueTitle = meta.venueTitles[(cityIndex + categoryIndex) % meta.venueTitles.length];
     const anchors = context.anchors.join(", ");
-    const description = meta.descriptionTemplate
-      .replace("{neighborhood}", neighborhood)
-      .replace("{regionalFocus}", context.regionalFocus)
-      .replace("{vibe}", context.vibe)
-      .replace("{anchors}", anchors);
 
-    return [
-      {
-        id: `spot-${toSlug(city)}-${toSlug(category)}-auto`,
+    return Array.from({ length: spotsToGenerate }, (_, generatedIndex) => {
+      const offset =
+        (cityIndex + 1) * 0.001 + (categoryIndex + 1) * 0.0002 + (generatedIndex + 1) * 0.0003;
+      const neighborhood =
+        context.neighborhoods[(categoryIndex + generatedIndex) % context.neighborhoods.length];
+      const venueTitle =
+        meta.venueTitles[(cityIndex + categoryIndex + generatedIndex) % meta.venueTitles.length];
+      const description = meta.descriptionTemplate
+        .replace("{neighborhood}", neighborhood)
+        .replace("{regionalFocus}", context.regionalFocus)
+        .replace("{vibe}", context.vibe)
+        .replace("{anchors}", anchors);
+      const tags = [meta.tags[generatedIndex % meta.tags.length], meta.tags[(generatedIndex + 1) % meta.tags.length], context.anchors[generatedIndex % context.anchors.length]];
+
+      return {
+        id: `spot-${toSlug(city)}-${toSlug(category)}-auto-${generatedIndex + 1}`,
         name: `${toTitlePrefix(city)} ${venueTitle}`,
         neighborhood,
         category,
-        tags: meta.tags,
+        tags,
         lat: center.lat + offset,
         lng: center.lng - offset,
         city,
         image: meta.image,
         description
-      }
-    ];
+      };
+    });
   })
 );
 
