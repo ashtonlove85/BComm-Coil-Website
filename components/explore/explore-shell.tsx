@@ -22,7 +22,7 @@ export type Spot = {
   lng: number;
 };
 
-const PER_PAGE = 4;
+const PER_PAGE = 12;
 const categoryLabels: Record<SpotCategory, string> = {
   Food: "Tapas & Food",
   Coffee: "Cafe Culture",
@@ -36,7 +36,7 @@ const categoryLabels: Record<SpotCategory, string> = {
 export function ExploreShell({ initialSpots }: { initialSpots: Spot[] }) {
   const [activeCategory, setActiveCategory] = useState<SpotCategory | "All">("All");
   const [query, setQuery] = useState("");
-  const [sortBy, setSortBy] = useState<"name" | "city" | "category">("name");
+  const [sortBy, setSortBy] = useState<"name" | "city" | "category">("city");
   const [visibleCount, setVisibleCount] = useState(PER_PAGE);
   const [saved, setSaved] = useState<Record<string, boolean>>({});
   const [selectedId, setSelectedId] = useState<string>();
@@ -53,11 +53,31 @@ export function ExploreShell({ initialSpots }: { initialSpots: Spot[] }) {
         : `${spot.name} ${spot.neighborhood} ${spot.city}`.toLowerCase().includes(normalizedQuery)
     );
 
-    return [...byQuery].sort((a, b) => {
+    const sorted = [...byQuery].sort((a, b) => {
       if (sortBy === "city") return a.city.localeCompare(b.city);
       if (sortBy === "category") return a.category.localeCompare(b.category);
       return a.name.localeCompare(b.name);
     });
+
+    // In category tabs, surface one spot per city first so every city appears upfront.
+    if (activeCategory !== "All") {
+      const seenCities = new Set<string>();
+      const cityFirst: Spot[] = [];
+      const remainder: Spot[] = [];
+
+      sorted.forEach((spot) => {
+        if (!seenCities.has(spot.city)) {
+          seenCities.add(spot.city);
+          cityFirst.push(spot);
+          return;
+        }
+        remainder.push(spot);
+      });
+
+      return [...cityFirst, ...remainder];
+    }
+
+    return sorted;
   }, [activeCategory, initialSpots, normalizedQuery, sortBy]);
 
   const visibleSpots = useMemo(() => filteredSpots.slice(0, visibleCount), [filteredSpots, visibleCount]);
