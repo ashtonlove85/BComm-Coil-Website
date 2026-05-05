@@ -336,7 +336,7 @@ const baseMapSeedSpots: SpotRecord[] = [
     lng: -3.6956,
     city: "Madrid",
     image:
-      "https://images.unsplash.com/photo-1539650116574-75c0c6d73f0e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1000&q=80",
     description: "A self-guided route through literary plazas, tiny galleries, and side streets."
   },
   {
@@ -403,6 +403,58 @@ const baseMapSeedSpots: SpotRecord[] = [
     image:
       "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80",
     description: "Contemporary food hall with Balearic flavors, seafood counters, and local wines."
+  },
+  {
+    id: "spot-bil-hg-1",
+    name: "Casco Viejo Pasaje Norte",
+    neighborhood: "Casco Viejo",
+    category: "Hidden Gems",
+    tags: ["Old Town", "Quiet Walk", "Photo Spot"],
+    lat: 43.2564,
+    lng: -2.9231,
+    city: "Bilbao",
+    image:
+      "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1000&q=80",
+    description: "A short back-street loop through the old quarter with architecture details locals notice more than maps do."
+  },
+  {
+    id: "spot-bil-hg-2",
+    name: "Ensanche Brick Passage",
+    neighborhood: "Indautxu",
+    category: "Hidden Gems",
+    tags: ["Side Street", "Architecture", "Low Footfall"],
+    lat: 43.2624,
+    lng: -2.9365,
+    city: "Bilbao",
+    image:
+      "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1000&q=80",
+    description: "A lesser-known cut-through between larger avenues, ideal for a calm ten-minute detour between plates."
+  },
+  {
+    id: "spot-ali-hg-1",
+    name: "Santa Barbara Roof Terrace",
+    neighborhood: "Castillo",
+    category: "Hidden Gems",
+    tags: ["Rooftop", "Sunset", "Harbor View"],
+    lat: 38.3491,
+    lng: -0.4784,
+    city: "Alicante",
+    image:
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80",
+    description: "An elevated pause above the old town with wide light and sea air, best at golden hour before dinner."
+  },
+  {
+    id: "spot-ali-hg-2",
+    name: "Mercado Central Roof Walk",
+    neighborhood: "Centro",
+    category: "Hidden Gems",
+    tags: ["Market Adjacent", "Above the Stalls", "Local Ritual"],
+    lat: 38.3456,
+    lng: -0.4812,
+    city: "Alicante",
+    image:
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=80",
+    description: "A practical locals route around the market roofline and side stairs, away from the busiest shopping drag."
   }
 ];
 
@@ -573,8 +625,8 @@ const categoryMeta: Record<
     tags: ["Quiet Pick", "Low Key", "Local Secret"],
     images: [
       "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1539650116574-75c0c6d73f0e?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1000&q=80"
     ],
     descriptionTemplate:
@@ -660,7 +712,7 @@ const cityCoverPhotos: Record<string, string> = {
   "San Sebastian":
     "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1600&q=80",
   Alicante:
-    "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1600&q=80",
   Cordoba:
     "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1600&q=80",
   Palma:
