@@ -24,7 +24,7 @@ const cityMapImages: Record<string, string> = {
   Seville:
     "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1400&q=80",
   Bilbao:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80",
+    "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?auto=format&fit=crop&w=1400&q=80",
   Malaga:
     "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1400&q=80",
   Granada:
@@ -34,6 +34,7 @@ const cityMapImages: Record<string, string> = {
 };
 
 export function ExploreMap({ spots, selectedId }: ExploreMapProps) {
+  const [failedCityImages, setFailedCityImages] = useState<Record<string, boolean>>({});
   const availableCities = useMemo(
     () => Array.from(new Set(spots.map((spot) => spot.city))),
     [spots]
@@ -41,13 +42,22 @@ export function ExploreMap({ spots, selectedId }: ExploreMapProps) {
   const selectedSpot = spots.find((spot) => spot.id === selectedId);
   const [activeCity, setActiveCity] = useState<string>(selectedSpot?.city ?? availableCities[0] ?? "Madrid");
   const heroCity = selectedSpot?.city ?? activeCity;
-  const cityImage = cityMapImages[heroCity] ?? cityMapImages.Madrid;
+  const cityImage =
+    failedCityImages[heroCity] || !cityMapImages[heroCity]
+      ? cityMapImages.Madrid
+      : cityMapImages[heroCity];
   const citySpots = spots.filter((spot) => spot.city === heroCity);
 
   return (
     <div className="h-full min-h-[600px] w-full rounded-2xl">
       <div className="relative h-[420px] overflow-hidden rounded-2xl border border-stone-200">
-        <Image src={cityImage} alt={`${heroCity} map view`} fill className="object-cover" />
+        <Image
+          src={cityImage}
+          alt={`${heroCity} map view`}
+          fill
+          className="object-cover"
+          onError={() => setFailedCityImages((prev) => ({ ...prev, [heroCity]: true }))}
+        />
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-sm text-stone-800">
           {heroCity} city view
