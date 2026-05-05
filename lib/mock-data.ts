@@ -431,61 +431,89 @@ const cityContext: Record<
 
 const categoryMeta: Record<
   SpotCategory,
-  { venueTitles: string[]; tags: string[]; image: string; descriptionTemplate: string }
+  { venueTitles: string[]; tags: string[]; images: string[]; descriptionTemplate: string }
 > = {
   Food: {
     venueTitles: ["Market Table", "Neighborhood Kitchen", "Local Plates House"],
     tags: ["Chef-Led", "Regional Menu", "Locals Favorite"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "A polished dining stop in {neighborhood} focused on {regionalFocus}, built for travelers who want a local-first meal."
   },
   Coffee: {
     venueTitles: ["Roasters Studio", "Morning Counter", "Slow Brew Atelier"],
     tags: ["Specialty Beans", "All-Day Cafe", "Remote Friendly"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=1200&q=80"
+    ],
     descriptionTemplate:
       "A calm coffee address in {neighborhood} where baristas spotlight {regionalFocus} in a modern, work-friendly setting."
   },
   Nightlife: {
     venueTitles: ["After Hours Room", "Night Sessions Club", "Late Social Lounge"],
     tags: ["Cocktail Program", "DJ Nights", "Local Crowd"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "An elevated nightlife pick near {neighborhood}, combining curated music, confident drinks, and the pace of {vibe}."
   },
   Culture: {
     venueTitles: ["Cultura House", "Arts Courtyard", "Barrio Culture Rooms"],
     tags: ["Local Artists", "Performance Nights", "Community Events"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "A neighborhood culture venue in {neighborhood} presenting exhibitions and live programming rooted in {regionalFocus}."
   },
   Shopping: {
     venueTitles: ["Design Market Hall", "Independent Goods House", "Makers Arcade"],
     tags: ["Independent Brands", "Handmade Goods", "Small Business"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "A curated shopping stop by {neighborhood} where visitors discover independent labels, studio goods, and practical local design."
   },
   Views: {
     venueTitles: ["Skyline Terrace", "Mirador Walk", "Panorama Point"],
     tags: ["Sunset View", "Photo Spot", "Scenic Route"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "A high-value viewpoint connected to {anchors}, delivering broad city perspectives without the heavy tourist flow."
   },
   "Hidden Gems": {
     venueTitles: ["Side-Street Find", "Secret Neighborhood Corner", "Under-the-Radar Spot"],
     tags: ["Quiet Pick", "Low Key", "Local Secret"],
-    image:
+    images: [
       "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1539650116574-75c0c6d73f0e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1000&q=80"
+    ],
     descriptionTemplate:
       "A lesser-known local recommendation around {neighborhood} that feels authentic, walkable, and intentionally away from peak crowds."
   }
@@ -521,6 +549,7 @@ const generatedCoverageSpots: SpotRecord[] = cityNames.flatMap((city, cityIndex)
         .replace("{regionalFocus}", context.regionalFocus)
         .replace("{vibe}", context.vibe)
         .replace("{anchors}", anchors);
+      const image = meta.images[(cityIndex + categoryIndex + generatedIndex) % meta.images.length];
       const tags = [meta.tags[generatedIndex % meta.tags.length], meta.tags[(generatedIndex + 1) % meta.tags.length], context.anchors[generatedIndex % context.anchors.length]];
 
       return {
@@ -532,7 +561,7 @@ const generatedCoverageSpots: SpotRecord[] = cityNames.flatMap((city, cityIndex)
         lat: center.lat + offset,
         lng: center.lng - offset,
         city,
-        image: meta.image,
+        image,
         description
       };
     });
