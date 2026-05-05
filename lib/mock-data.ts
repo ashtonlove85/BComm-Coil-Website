@@ -18,7 +18,10 @@ export const cityNames = [
   "Bilbao",
   "Malaga",
   "Granada",
-  "San Sebastian"
+  "San Sebastian",
+  "Alicante",
+  "Cordoba",
+  "Palma"
 ];
 
 export const testimonials = [
@@ -361,6 +364,45 @@ const baseMapSeedSpots: SpotRecord[] = [
     image:
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80",
     description: "Legendary venue for indie and electronic shows with a local-heavy crowd."
+  },
+  {
+    id: "spot-ali-1",
+    name: "Explanada Tapas Club",
+    neighborhood: "Centro",
+    category: "Food",
+    tags: ["Tapas", "Seafood", "Local Favorite"],
+    lat: 38.3443,
+    lng: -0.4832,
+    city: "Alicante",
+    image:
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80",
+    description: "Coastal tapas house known for rice dishes, marinated fish, and busy evening service."
+  },
+  {
+    id: "spot-cor-1",
+    name: "Patio Mercado Cordoba",
+    neighborhood: "Juderia",
+    category: "Shopping",
+    tags: ["Craft Market", "Ceramics", "Independent"],
+    lat: 37.8791,
+    lng: -4.7794,
+    city: "Cordoba",
+    image:
+      "https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1000&q=80",
+    description: "Boutique courtyard market featuring local leather goods, ceramics, and olive products."
+  },
+  {
+    id: "spot-pal-1",
+    name: "Santa Catalina Kitchen Hall",
+    neighborhood: "Santa Catalina",
+    category: "Food",
+    tags: ["Market", "Mallorcan", "Chef Counter"],
+    lat: 39.5724,
+    lng: 2.6388,
+    city: "Palma",
+    image:
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80",
+    description: "Contemporary food hall with Balearic flavors, seafood counters, and local wines."
   }
 ];
 
@@ -372,7 +414,10 @@ const cityCenters: Record<string, { lat: number; lng: number }> = {
   Bilbao: { lat: 43.263, lng: -2.935 },
   Malaga: { lat: 36.7213, lng: -4.4214 },
   Granada: { lat: 37.1773, lng: -3.5986 },
-  "San Sebastian": { lat: 43.3183, lng: -1.9812 }
+  "San Sebastian": { lat: 43.3183, lng: -1.9812 },
+  Alicante: { lat: 38.3452, lng: -0.4815 },
+  Cordoba: { lat: 37.8882, lng: -4.7794 },
+  Palma: { lat: 39.5696, lng: 2.6502 }
 };
 
 const cityContext: Record<
@@ -426,6 +471,24 @@ const cityContext: Record<
     vibe: "coastal gastronomic neighborhoods",
     regionalFocus: "pintxos culture and oceanfront lifestyle",
     anchors: ["bay promenades", "food lanes", "surf-adjacent corners"]
+  },
+  Alicante: {
+    neighborhoods: ["Centro", "El Barrio", "Ensanche", "Playa del Postiguet"],
+    vibe: "sunlit coastal districts",
+    regionalFocus: "Mediterranean seafood traditions and relaxed terrace culture",
+    anchors: ["marina walks", "palm-lined avenues", "old-town plazas"]
+  },
+  Cordoba: {
+    neighborhoods: ["Juderia", "San Basilio", "Centro", "Santa Marina"],
+    vibe: "historic courtyard neighborhoods",
+    regionalFocus: "Andalusian heritage cuisine and artisan craft traditions",
+    anchors: ["patio lanes", "Roman-era streets", "artisan courtyards"]
+  },
+  Palma: {
+    neighborhoods: ["Santa Catalina", "La Lonja", "Calatrava", "Paseo Maritimo"],
+    vibe: "island city quarters",
+    regionalFocus: "Balearic produce, market culture, and seafront lifestyle",
+    anchors: ["harbor promenades", "market halls", "cathedral viewpoints"]
   }
 };
 
@@ -522,13 +585,22 @@ const categoryMeta: Record<
 const toSlug = (value: string) => value.toLowerCase().replace(/\s+/g, "-");
 const toTitlePrefix = (city: string) => city.replace("San Sebastian", "Donostia");
 const MIN_SPOTS_PER_CITY_CATEGORY = 2;
+const categoryMinimums: Record<SpotCategory, number> = {
+  Food: 4,
+  Coffee: MIN_SPOTS_PER_CITY_CATEGORY,
+  Nightlife: MIN_SPOTS_PER_CITY_CATEGORY,
+  Culture: MIN_SPOTS_PER_CITY_CATEGORY,
+  Shopping: 4,
+  Views: MIN_SPOTS_PER_CITY_CATEGORY,
+  "Hidden Gems": MIN_SPOTS_PER_CITY_CATEGORY
+};
 
 const generatedCoverageSpots: SpotRecord[] = cityNames.flatMap((city, cityIndex) =>
   categories.flatMap((category, categoryIndex) => {
     const existingCount = baseMapSeedSpots.filter(
       (spot) => spot.city === city && spot.category === category
     ).length;
-    const spotsToGenerate = Math.max(0, MIN_SPOTS_PER_CITY_CATEGORY - existingCount);
+    const spotsToGenerate = Math.max(0, categoryMinimums[category] - existingCount);
 
     if (spotsToGenerate === 0) return [];
 
@@ -586,7 +658,13 @@ const cityCoverPhotos: Record<string, string> = {
   Granada:
     "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80",
   "San Sebastian":
-    "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1600&q=80"
+    "https://images.unsplash.com/photo-1590490359683-658d3d23f972?auto=format&fit=crop&w=1600&q=80",
+  Alicante:
+    "https://images.unsplash.com/photo-1470123808288-1e59739f2b6d?auto=format&fit=crop&w=1600&q=80",
+  Cordoba:
+    "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1600&q=80",
+  Palma:
+    "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1600&q=80"
 };
 
 export const cityDirectory = cityNames.map((name) => ({
