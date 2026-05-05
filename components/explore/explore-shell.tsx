@@ -59,25 +59,21 @@ export function ExploreShell({ initialSpots }: { initialSpots: Spot[] }) {
       return a.name.localeCompare(b.name);
     });
 
-    // In category tabs, surface one spot per city first so every city appears upfront.
-    if (activeCategory !== "All") {
-      const seenCities = new Set<string>();
-      const cityFirst: Spot[] = [];
-      const remainder: Spot[] = [];
+    // Surface one spot per city first so every city appears upfront.
+    const seenCities = new Set<string>();
+    const cityFirst: Spot[] = [];
+    const remainder: Spot[] = [];
 
-      sorted.forEach((spot) => {
-        if (!seenCities.has(spot.city)) {
-          seenCities.add(spot.city);
-          cityFirst.push(spot);
-          return;
-        }
-        remainder.push(spot);
-      });
+    sorted.forEach((spot) => {
+      if (!seenCities.has(spot.city)) {
+        seenCities.add(spot.city);
+        cityFirst.push(spot);
+        return;
+      }
+      remainder.push(spot);
+    });
 
-      return [...cityFirst, ...remainder];
-    }
-
-    return sorted;
+    return [...cityFirst, ...remainder];
   }, [activeCategory, initialSpots, normalizedQuery, sortBy]);
 
   const visibleSpots = useMemo(() => filteredSpots.slice(0, visibleCount), [filteredSpots, visibleCount]);
